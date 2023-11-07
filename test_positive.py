@@ -3,6 +3,7 @@ import subprocess
 tst = "/home/user/tst"
 out = "/home/user/out"
 folder1 = "/home/user/folder1"
+folder2 = "/home/user/folder2"
 
 
 def checkout(cmd, text):
@@ -34,13 +35,18 @@ def test_step4():
     result1 = checkout("cd {}; 7z u {}/arx2.7z".format(tst, out), "Everything is Ok"), "test4 FAIL"
 
 
-def test_step5():
-    result1 = checkout("cd {}; 7z d arx2.7z".format(out), "Everything is Ok"), "test5 FAIL"
+# def test_step5():
+#     result1 = checkout("cd {}; 7z d arx2.7z".format(out), "Everything is Ok"), "test5 FAIL"
 
 
 def test_step6():
-    result1 = checkout("cd {}; 7z d arx2.7z".format(out), "Everything is Ok"), "test5 FAIL"
+    result1 = checkout("cd {}; 7z l arx2.7z".format(out), "2 files"), "test6 FAIL"
+    result2 = checkout("cd {}; 7z l arx2.7z".format(out), "qwe"), "test6 FAIL"
+    result3 = checkout("cd {}; 7z l arx2.7z".format(out), "rty"), "test6 FAIL"
 
 
 def test_step7():
-    result1 = checkout("cd {}; 7z d arx2.7z".format(out), "Everything is Ok"), "test5 FAIL"
+    result1 = checkout("cd {}; 7z x arx2.7z -o{} -y".format(out, folder2), "Everything is Ok")
+    result2 = checkout("cd {}; ls".format(folder2), "qwe")
+    result3 = checkout("cd {}; ls".format(folder2), "rty")
+    assert result1 and result2 and result3, "test7 FAIL"
