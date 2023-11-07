@@ -50,3 +50,10 @@ def test_step7():
     result2 = checkout("cd {}; ls".format(folder2), "qwe")
     result3 = checkout("cd {}; ls".format(folder2), "rty")
     assert result1 and result2 and result3, "test7 FAIL"
+
+
+def test_8():
+    result = subprocess.run("crc32 /home/user/out/arx2.7z", shell=True, stdout=subprocess.PIPE, encoding="utf-8")
+    data = result.stdout.rstrip().upper()
+    assert checkout(f"cd {out}; 7z h arx2.7z", data), "test8 FAIL"
+
