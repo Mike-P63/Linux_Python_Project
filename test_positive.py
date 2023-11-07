@@ -35,8 +35,8 @@ def test_step4():
     result1 = checkout("cd {}; 7z u {}/arx2.7z".format(tst, out), "Everything is Ok"), "test4 FAIL"
 
 
-# def test_step5():
-#     result1 = checkout("cd {}; 7z d arx2.7z".format(out), "Everything is Ok"), "test5 FAIL"
+def test_step5():
+    result1 = checkout("cd {}; 7z d arx2.7z".format(out), "Everything is Ok"), "test5 FAIL"
 
 
 def test_step6():
