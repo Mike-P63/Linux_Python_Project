@@ -1,21 +1,17 @@
 import subprocess
+import yaml
 
-out = "/home/user/out"
-folder1 = "/home/user/folder1"
+from checkers import checkout_negative
 
-
-def checkout(cmd, text):
-    result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8")
-    if (text in result.stdout or text in result.stderr) and result.returncode != 0:
-        return True
-    else:
-        return False
+with open("config.yaml") as f:
+    data = yaml.safe_load(f)
 
 
-def test_step1():
-    result1 = checkout("cd {}; 7z e bad_arx.7z -o{} -y".format(out, folder1), "ERRORS")
-    assert result1, "test1 FAIL"
+class TestNegative:
+    def test_step1(self, make_bad_arx):
+        result1 = checkout_negative("cd {}; 7z e bad_arx.7z -o{} -y".format(data["folder_out"], data["folder_ext"]),
+                                    "ERRORS")
+        assert result1, "test1 FAIL"
 
-
-def test_step2():
-    result1 = checkout("cd {}; 7z t bad_arx.7z".format(out), "ERRORS"), "test2 FAIL"
+    def test_step2(self):
+        result1 = checkout_negative("cd {}; 7z t bad_arx.7z".format(data["folder_out"]), "ERRORS"), "test2 FAIL"
