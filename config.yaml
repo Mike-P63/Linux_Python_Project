@@ -7,3 +7,4 @@ count: 5
 bs: 1M
 type: zip
 stat_file: /home/user/stat.txt
+key_t: -tzip

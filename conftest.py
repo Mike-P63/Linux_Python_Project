@@ -58,3 +58,17 @@ def make_stat():
     processor_work = getout("cat /proc/loadavg")
     tests_stat = f"{datetime.now()} - Config files qty: {data['count']}, files size:  {data['bs']}, Processor statistics: {processor_work}"
     getout(f"echo '{tests_stat}' >> {data['stat_file']}")
+
+#  File stat.txt :
+
+# 2023-11-11 20:25:47.094729 - Config files qty: 5, files size:  1M, Processor statistics: 3.04 3.31 2.74 5/541 7633
+#
+# 2023-11-11 20:25:47.286194 - Config files qty: 5, files size:  1M, Processor statistics: 3.04 3.31 2.74 6/542 7641
+#
+# 2023-11-11 20:25:47.495237 - Config files qty: 5, files size:  1M, Processor statistics: 3.04 3.31 2.74 11/544 7648
+#
+# 2023-11-11 20:25:47.987628 - Config files qty: 5, files size:  1M, Processor statistics: 3.04 3.31 2.74 5/549 7662
+#
+# 2023-11-11 20:25:48.603462 - Config files qty: 5, files size:  1M, Processor statistics: 3.04 3.31 2.74 6/550 7673
+#
+# 2023-11-11 20:25:49.104461 - Config files qty: 5, files size:  1M, Processor statistics: 3.04 3.31 2.74 2/550 7680
